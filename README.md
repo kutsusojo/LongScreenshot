@@ -77,6 +77,29 @@ seams are moved into the trusted overlap region so fixed bottom bars from
 earlier screenshots are replaced by matching content from the following
 screenshot.
 
+### How much overlap is enough?
+
+The current algorithm searches overlap heights starting at **20% of the
+shorter screenshot's height**. An actual overlap smaller than that is outside
+the search range and will not be detected by the default policy.
+
+For normal use, aim for approximately **30–50% overlap** between each pair of
+consecutive screenshots. In practice, scroll by about 50–70% of the visible
+screen height, leaving roughly one-third to one-half of the previous content
+visible in the next screenshot.
+
+For screenshots that are 2712 pixels tall:
+
+- algorithmic minimum: about 542 pixels (20%);
+- recommended overlap: about 814–1356 pixels (30–50%); and
+- physically tested example: 1040 pixels, about 38%.
+
+The shared area should contain distinctive, stable content such as text,
+lines, or image details. A large overlap made mostly of blank space, repeating
+patterns, animations, or changing content can still be unreliable. More
+overlap usually improves the available evidence, but it also requires more
+screenshots and does not compensate for unstable content.
+
 ### Project structure
 
 ```text
@@ -159,7 +182,8 @@ Android ARM64 with NDK r29.
 - screenshots have identical widths and scale;
 - screenshots are selected in correct top-to-bottom order;
 - scrolling is vertical with approximately zero horizontal displacement; and
-- consecutive screenshots contain substantial overlap.
+- consecutive screenshots contain enough stable overlap, preferably 30–50%
+  (see [How much overlap is enough?](#how-much-overlap-is-enough)).
 
 ### Non-goals for version 1
 
@@ -246,6 +270,27 @@ Compose でプレビューし、MediaStore で保存する
 さらに内部の継ぎ目を信頼できる重なり領域へ移動し、前の画像に含まれる固定
 ボトムバーを、次の画像の一致する内容で置き換えます。
 
+### どのくらいの重なりが必要か
+
+現在のアルゴリズムは、短い方のスクリーンショットの高さに対して **20% 以上**の
+重なりを検索します。実際の重なりが 20% 未満の場合、既定の検索範囲外になるため
+検出できません。
+
+通常は、隣接する各画像に **30～50% 程度の重なり**を残すことを推奨します。
+画面の高さの約 50～70% だけスクロールし、前の画面内容の約 3 分の 1～半分が
+次のスクリーンショットにも残るように撮影してください。
+
+高さ 2712 ピクセルのスクリーンショットの場合:
+
+- アルゴリズム上の最小値: 約 542 ピクセル（20%）;
+- 推奨する重なり: 約 814～1356 ピクセル（30～50%）; および
+- 実機で確認した例: 1040 ピクセル（約 38%）。
+
+重なる領域には、文字、線、画像の細部など、変化せず区別しやすい内容が必要です。
+空白、繰り返し模様、アニメーション、撮影ごとに変化する内容が大部分を占める場合、
+重なりが広くても正しく検出できないことがあります。重なりを増やすと比較材料は
+増えますが、必要な撮影枚数も増え、不安定な内容そのものは解決できません。
+
 ### プロジェクト構成
 
 ```text
@@ -306,7 +351,8 @@ app/app/build/outputs/apk/debug/app-debug.apk
 - 画像の幅と表示倍率が同じ;
 - 画像を正しい上から下の順番で選択する;
 - 縦スクロールで、水平方向のずれがほぼない; および
-- 隣接画像に十分な重なりがある。
+- 隣接画像に、できれば 30～50% の安定した重なりがある（
+  [どのくらいの重なりが必要か](#どのくらいの重なりが必要か) を参照）。
 
 ### バージョン 1 で実装しないもの
 
