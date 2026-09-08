@@ -1,0 +1,24 @@
+# Machine-specific Android configuration
+**/local.properties
+
+# Android Studio and Gradle state
+.idea/
+**/*.iml
+**/.gradle/
+**/build/
+**/.cxx/
+**/.externalNativeBuild/
+**/captures/
+
+# Rust build output
+stitcher/target/
+
+# Generated Android native libraries
+app/app/src/main/jniLibs/
+
+# Local source snapshots
+backups/
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
