@@ -1,6 +1,6 @@
 # LongScreenshot project status
 
-Updated: 2026-09-08
+Updated: 2026-09-09
 
 ## Current milestone
 
@@ -219,6 +219,9 @@ Milestones 1, 2, 3, 4, 5, and 6 are complete. Milestone 7 has started.
 - The middle button changes from Stitch to Preview after a result exists; successful stitching opens the preview, tapping the preview closes it, and Preview reopens it without rerunning Rust.
 - Selecting new screenshots clears the old result and restores the middle button to Stitch.
 - The Milestone 7E Android debug build and physical-phone verification succeed: the simplified UI looks correct and the stitch, preview toggle, and save workflow work as intended.
+- Git for Windows 2.55.0 is installed, and the workspace is initialized on branch main with origin https://github.com/kutsusojo/LongScreenshot.git.
+- Root ignore rules exclude machine-specific Android configuration, generated build outputs and native libraries, Rust target output, IDE state, and local backup archives.
+- The reviewed initial source snapshot was committed as 3261d07 and pushed successfully to GitHub.
 
 ## Not yet completed
 
